@@ -1,25 +1,26 @@
-import React, { useEffect, useState } from 'react'
-import { Button,  Text, View } from 'react-native'
-import movieDB from '../api/movieDB';
-import { MovieDBNowPlaying } from '../interfaces/movieInterface';
+import React from 'react'
+import { ActivityIndicator, Text, View } from 'react-native'
+import { MovieCard } from '../components/MovieCard';
+import { useMovies } from '../hooks/useMovies'
+
 
 export const HomePageScreen = () => {
 
-    const [movie, setMovie] = useState([]);
-    useEffect(() => {
-        movieDB.get<MovieDBNowPlaying>('/now_playing')
-        .then((res) => console.log(res.data))
-        .catch(err => console.log(err));        
-    }, [])
+    const { nowPlaying, isLoading } = useMovies();
 
+    if(isLoading){
+        return ( 
+            <View style={{
+                flex: 1,
+                justifyContent: "center"
+            }}>
+                <ActivityIndicator size="small" color="#0000ff" />
+            </View>
+        )
+    }
     return (
         <View  style={{margin: 10}}>
-            <Text style={{
-                marginVertical: 10,
-                fontSize: 25
-            }}>
-                Hello from home
-            </Text>     
+            <MovieCard movie={nowPlaying[0]}/>
         </View>
     )
 }

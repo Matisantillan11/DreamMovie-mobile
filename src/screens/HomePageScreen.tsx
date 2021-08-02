@@ -1,9 +1,14 @@
-import { StackScreenProps } from '@react-navigation/stack'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button,  Text, View } from 'react-native'
+import movieDB from '../api/movieDB';
 
-interface Props extends StackScreenProps<any, any>{}; 
-export const HomePageScreen = ({ navigation }: Props) => {
+export const HomePageScreen = () => {
+
+    const [movie, setMovie] = useState([]);
+    useEffect(() => {
+        movieDB.get('/now_playing').then((res) => console.log(res.data)).catch(err => console.log(err));        
+    }, [])
+
     return (
         <View  style={{margin: 10}}>
             <Text style={{
@@ -11,11 +16,7 @@ export const HomePageScreen = ({ navigation }: Props) => {
                 fontSize: 25
             }}>
                 Hello from home
-            </Text> 
-            <Button
-            title="go to descriptions"
-            onPress={()=> navigation.navigate("MovieDescription")}
-            />           
+            </Text>     
         </View>
     )
 }

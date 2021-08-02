@@ -1,7 +1,11 @@
+import { StackScreenProps } from '@react-navigation/stack'
 import React from 'react'
+import { Button } from 'react-native'
 import { Text, View } from 'react-native'
 
-export const MovieDescriptionPage = () => {
+
+interface Props extends StackScreenProps<any, any>{};
+export const MovieDescriptionPage = ({ navigation }: Props) => {
     return (
         <View>
             <Text style={{
@@ -10,6 +14,11 @@ export const MovieDescriptionPage = () => {
             }}>
                 Hello from descriptions
             </Text>
+
+            <Button
+            title="go to home"
+            onPress={()=> navigation.navigate("Home")}
+            />
         </View>
     )
 }

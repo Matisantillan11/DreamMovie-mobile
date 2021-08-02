@@ -8,7 +8,10 @@ const Stack = createStackNavigator();
 
 export const MoviesStack = () => {
     return (
-        <Stack.Navigator>
+        <Stack.Navigator
+        screenOptions={{
+            headerShown: false
+        }}>
             <Stack.Screen name="Home" component={HomePageScreen}/>
             <Stack.Screen name="MovieDescription" component={MovieDescriptionPage}/>
         </Stack.Navigator>

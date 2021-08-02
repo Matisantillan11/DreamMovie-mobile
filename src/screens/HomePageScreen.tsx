@@ -1,5 +1,5 @@
 import React from 'react'
-import { ActivityIndicator, Text, View } from 'react-native'
+import { ActivityIndicator, FlatList, ScrollView, Text, View } from 'react-native'
 import { MovieCard } from '../components/MovieCard';
 import { useMovies } from '../hooks/useMovies'
 
@@ -20,7 +20,12 @@ export const HomePageScreen = () => {
     }
     return (
         <View  style={{margin: 10}}>
-            <MovieCard movie={nowPlaying[0]}/>
+            <ScrollView horizontal={true}>
+                {nowPlaying.map(movie =>{
+                return <MovieCard key={movie.id} movie={movie}/>
+                })}
+            </ScrollView>
+            
         </View>
     )
 }

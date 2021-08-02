@@ -15,13 +15,21 @@ export const MovieCard = ({ movie }: Props) => {
         <View style={{
             width: 300,
             height: 450,
+            margin: 15
         }}>
             <View style={styles.imgContainer}>
                 <Image 
                 source={{uri}} 
                 style={styles.img} 
                 />
-                
+                <Text style={{
+                    fontSize: 18,
+                    marginVertical: 10,
+                    paddingHorizontal: 10,
+                    color:"#f1f1f1",
+                }}>
+                    {movie.original_title}
+                </Text>
             </View>
         </View>
     )
@@ -30,18 +38,17 @@ export const MovieCard = ({ movie }: Props) => {
 const styles = StyleSheet.create({
     imgContainer:{
         flex:1,  
-        shadowColor: "#000",
+        shadowColor: "#f1f1f1",
         shadowOffset:{
-            width: 0,
-            height: 2
+            width: 10,
+            height: 100
         },
-        shadowOpacity: 0.9,
+        shadowOpacity: 0.25,
         shadowRadius: 3.84,
-        elevation: 10
+        elevation: 5
     },
     img:{
-       flex: 1,
-       borderRadius: 20,
-
+        flex: 1,
+        borderRadius: 20,
     }
 })

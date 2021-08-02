@@ -10,7 +10,10 @@ export const MoviesStack = () => {
     return (
         <Stack.Navigator
         screenOptions={{
-            headerShown: false
+            headerShown: false,
+            cardStyle:{
+                backgroundColor: "#333"
+            }
         }}>
             <Stack.Screen name="Home" component={HomePageScreen}/>
             <Stack.Screen name="MovieDescription" component={MovieDescriptionPage}/>

@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { Button,  Text, View } from 'react-native'
 import movieDB from '../api/movieDB';
+import { MovieDBNowPlaying } from '../interfaces/movieInterface';
 
 export const HomePageScreen = () => {
 
     const [movie, setMovie] = useState([]);
     useEffect(() => {
-        movieDB.get('/now_playing').then((res) => console.log(res.data)).catch(err => console.log(err));        
+        movieDB.get<MovieDBNowPlaying>('/now_playing')
+        .then((res) => console.log(res.data))
+        .catch(err => console.log(err));        
     }, [])
 
     return (

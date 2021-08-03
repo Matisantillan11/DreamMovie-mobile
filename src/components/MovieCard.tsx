@@ -5,16 +5,18 @@ import { Movie } from '../interfaces/movieInterface'
 
 
 interface Props {
-    movie: Movie
+    movie: Movie,
+    height?: number,
+    width?: number
 }
 
-export const MovieCard = ({ movie }: Props) => {
+export const MovieCard = ({ movie, height = 450, width = 300 }: Props) => {
 
     const uri = `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`
     return (
         <View style={{
-            width: 300,
-            height: 450,
+            width,
+            minHeight: height,
             margin: 15
         }}>
             <View style={styles.imgContainer}>

@@ -1,9 +1,11 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
+import { FlatList, ScrollView } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Video from 'react-native-video'
 import { CastElement } from '../interfaces/castInterface'
 import { FullMovie } from '../interfaces/movieInterface'
+import { CastingCard } from './CastingCard';
 
 
 interface Props{
@@ -16,8 +18,6 @@ interface Props{
 
 export const MovieDetails = ({ movie, cast, width, height }: Props) => {
 
-    console.log(cast)
-
     return (
         <>
             <View style={{
@@ -27,14 +27,15 @@ export const MovieDetails = ({ movie, cast, width, height }: Props) => {
                 }}>
                     <Icon name="star-outline" size={20} color="#ffffffb2" />
                     <Text style={{
-                        color: "rgba(255, 255, 255, 0.7)",
+                        color: "#ffffffb2",
                         fontSize: 15,
                         marginHorizontal: 10
                     }}>{movie.vote_average}</Text>
 
                     <Text style={{
-                        color: "rgba(255, 255, 255, 0.7)",
-                        fontSize: 15}}
+                        color: "#ffffffb2",
+                        fontSize: 15
+                    }}
                     >
                          -  { movie.genres.map( genre => genre.name).join(', ') }
                     </Text>
@@ -52,22 +53,26 @@ export const MovieDetails = ({ movie, cast, width, height }: Props) => {
                 </View>
             </View>
 
-            <View style={{
-                width,
-                height: height * 0.5
-            }}>
-                <Video 
-                source={{uri: "https://www.youtube.com/watch?v=giJYLfWIzTk&ab_channel=SensaCineTRAILERS" }}
-                controls = { true }
-                
-                style={{
-                    flex: 1
-                }}
+            {/*casting */}
+            <View>
+                <Text style={styles.sectionTitle}>Casting</Text>
+        
+                <FlatList 
+                horizontal={true}
+                data={cast}
+                keyExtractor = { ( item ) => item.id.toString() }
+                renderItem={({ item }) => <CastingCard actor={item} />} 
+                showsHorizontalScrollIndicator={ false }
+                style={{marginVertical: 10, height: 80 }}
                 />
-            </View> 
+                
+                    
+            </View>
+
+     
         </>
     )
-}
+}       
 
 const styles = StyleSheet.create({
     sectionTitle:{
@@ -79,6 +84,10 @@ const styles = StyleSheet.create({
     overview:{
         color: "#f1f1f1",
         fontSize: 20
+    },
+    casting: {
+        color: "#f1f1f1",
+        fontSize: 16
     }
     
 })

@@ -47,17 +47,19 @@ export const MovieCard = ({ movie, height = 450, width = 300 }: Props) => {
 const styles = StyleSheet.create({
     imgContainer:{
         flex:1,  
-        shadowColor: "#f1f1f1",
+        backgroundColor: "#333",
+        shadowColor: "#ffffffb2",
         shadowOffset:{
-            width: 10,
+            width: 0,
             height: 100
         },
-        shadowOpacity: 0.25,
+        shadowOpacity: 0.75,
         shadowRadius: 3.84,
-        elevation: 5
+        elevation: 5 ,
+        borderRadius: 20,
     },
     img:{
         flex: 1,
-        borderRadius: 20,
+        borderRadius: 5,
     }
 })

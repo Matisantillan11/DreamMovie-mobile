@@ -1,5 +1,6 @@
+import { useNavigation } from '@react-navigation/native'
 import React from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, TouchableOpacity } from 'react-native'
 import { Image, Text, View } from 'react-native'
 import { Movie } from '../interfaces/movieInterface'
 
@@ -13,12 +14,18 @@ interface Props {
 export const MovieCard = ({ movie, height = 450, width = 300 }: Props) => {
 
     const uri = `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`
+
+    const navigation = useNavigation();
+
     return (
-        <View style={{
+        <TouchableOpacity 
+        onPress={()=> navigation.navigate('MovieDescription', movie)}
+        style={{
             width,
             minHeight: height,
             margin: 15
-        }}>
+        }}
+        >
             <View style={styles.imgContainer}>
                 <Image 
                 source={{uri}} 
@@ -33,7 +40,7 @@ export const MovieCard = ({ movie, height = 450, width = 300 }: Props) => {
                     {movie.original_title}
                 </Text>
             </View>
-        </View>
+        </TouchableOpacity>
     )
 }
 

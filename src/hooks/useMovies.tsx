@@ -10,7 +10,6 @@ interface MoviesState {
 
 }
 
-
 export const useMovies = () => {
 
     const [isLoading, setIsLoading] = useState(true)
